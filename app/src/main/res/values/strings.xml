@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">TaskMaster-V2</string>
+    <string name="app_name">TaskMaster</string>
+    <string name="app_slogan">"Never let a task slip through the cracks."</string>
+    <string name="button_add_task">Add Task</string>
+    <string name="button_view_tasks">View Tasks</string>
+    <string name="company_logo_description">"Never let a task slip through the cracks."</string>
+    <string name="developer_info">Developed by Group #4 - Conestoga College</string>
 </resources>
