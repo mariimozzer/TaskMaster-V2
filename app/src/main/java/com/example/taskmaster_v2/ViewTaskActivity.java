@@ -9,6 +9,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class ViewTaskActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -63,6 +65,32 @@ public class ViewTaskActivity extends AppCompatActivity implements SearchView.On
         }
         taskRVAdpter.notifyDataSetChanged();
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_order_by_date:
+                Collections.sort(filteredEventArrayList, new Comparator<TaskModel>() {
+                    @Override
+                    public int compare(TaskModel t1, TaskModel t2) {
+                        return t1.getDueDate().compareTo(t2.getDueDate());
+                    }
+                });
+                taskRVAdpter.notifyDataSetChanged();
+                return true;
+            case R.id.action_order_by_priority:
+                Collections.sort(filteredEventArrayList, new Comparator<TaskModel>() {
+                    @Override
+                    public int compare(TaskModel t1, TaskModel t2) {
+                        return Integer.compare(t1.getPriority(), t2.getPriority());
+                    }
+                });
+                taskRVAdpter.notifyDataSetChanged();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
