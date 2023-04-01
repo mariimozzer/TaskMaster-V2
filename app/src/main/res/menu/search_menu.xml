@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/action_search"
+        android:title="Search"
+        app:showAsAction="always|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+    <item android:id="@+id/action_order_by_date"
+        android:title="Order by Date"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/action_order_by_priority"
+        android:title="Order by Priority"
+        app:showAsAction="never"/>
+</menu>
