@@ -2,6 +2,7 @@ package com.example.taskmaster_v2;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,13 @@ public class TaskRVAdpter extends RecyclerView.Adapter<TaskRVAdpter.ViewHolder> 
 
     private ArrayList<TaskModel> taskArray;
     private Context context;
+    private final int LOW_PRIORITY = 3;
+    private final int MEDIUM_PRIORITY = 7;
+    private final int HIGH_PRIORITY = 10;
+
+    private final int LOW_COLOR = Color.GREEN;
+    private final int MEDIUM_COLOR = Color.YELLOW;
+    private final int HIGH_COLOR = Color.RED;
 
     public TaskRVAdpter(ArrayList<TaskModel> taskArray, Context context) {
 
@@ -43,6 +51,19 @@ public class TaskRVAdpter extends RecyclerView.Adapter<TaskRVAdpter.ViewHolder> 
         holder.dueDate.setText(modal.getDueDate());
         holder.priority.setText(String.valueOf(modal.getPriority()));
         holder.notes.setText(modal.getNotes());
+
+        int priority = modal.getPriority();
+        int color = Color.GREEN; // Default color for low priority
+        if (priority >= LOW_PRIORITY && priority < MEDIUM_PRIORITY) {
+            color = LOW_COLOR;
+        } else if (priority >= MEDIUM_PRIORITY && priority < HIGH_PRIORITY) {
+            color = MEDIUM_COLOR;
+        } else if (priority >= HIGH_PRIORITY) {
+            color = HIGH_COLOR;
+        }
+        holder.priority.setBackgroundColor(color);
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
