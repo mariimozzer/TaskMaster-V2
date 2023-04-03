@@ -75,11 +75,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return courseModalArrayList;
     }
 
-    public void deleteTask(int id) {
+    public void deleteTask(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[] { String.valueOf(id) });
+        db.delete(TABLE_NAME, " name=?", new String[] { name });
         db.close();
     }
+
+    public void updateTask(String originalName, String name, String description, String dueDate, int priority, String notes) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_DESCRIPTION, description);
+        values.put(COLUMN_DUE_DATE, dueDate);
+        values.put(COLUMN_PRIORITY, priority);
+        values.put(COLUMN_NOTES, notes);
+        db.update(TABLE_NAME, values, "name=?", new String[] { originalName });
+        db.close();
+    }
+
+    public TaskModel getTask(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_NAME, new String[] { COLUMN_ID,
+                        COLUMN_NAME, COLUMN_DESCRIPTION, COLUMN_DUE_DATE, COLUMN_PRIORITY, COLUMN_NOTES }, COLUMN_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+
+        TaskModel task = null;
+
+        if (cursor != null && cursor.moveToFirst()) {
+            task = new TaskModel(cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3),
+                    cursor.getInt(4),
+                    cursor.getString(5));
+        }
+
+        cursor.close();
+
+        return task;
+    }
+
 
 
 }
