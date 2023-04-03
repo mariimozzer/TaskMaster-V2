@@ -38,6 +38,9 @@ public class ViewTaskActivity extends AppCompatActivity implements SearchView.On
                 LinearLayoutManager(ViewTaskActivity.this, RecyclerView.VERTICAL, false);
         taskRV.setLayoutManager(linearLayoutManager);
         taskRV.setAdapter(taskRVAdpter);
+
+        // Call the method and pass in the task list
+        Helper.showSameDayTasksPopup(this, eventArrayList);
     }
 
     @Override
