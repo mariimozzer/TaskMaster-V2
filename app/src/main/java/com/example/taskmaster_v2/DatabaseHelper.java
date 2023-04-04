@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "TaskDatabase.db";
 
     private static final String TABLE_NAME = "tasks";
@@ -32,7 +32,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_DUE_DATE + " TEXT,"
                 + COLUMN_PRIORITY + " INTEGER,"
                 + COLUMN_NOTES + " TEXT)";
+
+        String CREATE_USERS_TABLE = "CREATE TABLE users ("
+                + "username TEXT PRIMARY KEY,"
+                + "password TEXT)";
+
         db.execSQL(CREATE_TABLE);
+        db.execSQL(CREATE_USERS_TABLE);
+
+        // Seed data in the users table
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("username", "user1");
+        contentValues.put("password", "password1");
+        db.insert("users", null, contentValues);
+
+        contentValues = new ContentValues();
+        contentValues.put("username", "user2");
+        contentValues.put("password", "password2");
+        db.insert("users", null, contentValues);
     }
 
     @Override
@@ -115,6 +132,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return task;
     }
 
-
+    public boolean checkUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        db.close();
+        return exists;
+    }
 
 }
