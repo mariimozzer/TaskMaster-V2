@@ -1,3 +1,14 @@
+/*
+ * File Name: DatabaseHelper.java
+ * Description: Database handle for the app.  It manages the creation and upgrade of the database,
+ *  as well as the CRUD operations (create, read, update, delete) for tasks and user authentication (registration and login).
+ *
+ * Project Revision:
+ *      Mariana Mozzer, 2023.03.30: Created
+ */
+
+
+
 package com.example.taskmaster_v2;
 
 import android.content.ContentValues;

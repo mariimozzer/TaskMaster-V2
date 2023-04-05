@@ -1,3 +1,12 @@
+/*
+ * File Name: TaskRVAdpater.java
+ * Description: This class is the adapter for handling the views for each task in the list.
+ *
+ * Project Revision:
+ *     Guilherme Bueno, 2023.04.02: Created
+ */
+
+
 package com.example.taskmaster_v2;
 
 import android.content.Context;
@@ -26,6 +35,12 @@ public class TaskRVAdpter extends RecyclerView.Adapter<TaskRVAdpter.ViewHolder> 
     private final int MEDIUM_COLOR = Color.YELLOW;
     private final int HIGH_COLOR = Color.RED;
 
+    /*
+     * Constructor for TaskRVAdpter.
+     *
+     * @param taskArray an ArrayList of TaskModels representing the tasks to be displayed.
+     * @param context the context in which the adapter will be used.
+     */
     public TaskRVAdpter(ArrayList<TaskModel> taskArray, Context context) {
 
         this.taskArray = taskArray;
@@ -34,9 +49,14 @@ public class TaskRVAdpter extends RecyclerView.Adapter<TaskRVAdpter.ViewHolder> 
     }
 
     @NonNull
-
     @Override
-
+    /*
+     * Create a new ViewHolder for a task view.
+     *
+     * @param parent the parent ViewGroup
+     * @param viewType the view type
+     * @return a ViewHolder for a task view
+     */
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_rv_item, parent, false);
@@ -45,7 +65,12 @@ public class TaskRVAdpter extends RecyclerView.Adapter<TaskRVAdpter.ViewHolder> 
     }
 
     @Override
-
+    /*
+     * Bind the data of a TaskModel to a ViewHolder.
+     *
+     * @param holder the ViewHolder to bind to
+     * @param position the position of the task in the ArrayList
+     */
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         TaskModel modal = taskArray.get(position);
@@ -86,7 +111,11 @@ public class TaskRVAdpter extends RecyclerView.Adapter<TaskRVAdpter.ViewHolder> 
 
     }
     @Override
-
+    /*
+     * Get the number of tasks in the ArrayList.
+     *
+     * @return the number of tasks in the ArrayList
+     */
     public int getItemCount() {
 
         return taskArray.size();

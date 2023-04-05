@@ -1,3 +1,12 @@
+/*
+ * File Name: MainActivity.java
+ * Description:   This class is responsible for handling add task and view task handler for the app.
+ *
+ * Project Revision:
+ *      Mariana Mozzer, 2023.03.30: Created
+ */
+
+
 package com.example.taskmaster_v2;
 
 import androidx.appcompat.app.AppCompatActivity;

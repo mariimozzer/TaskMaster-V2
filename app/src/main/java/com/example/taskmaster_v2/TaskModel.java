@@ -1,7 +1,12 @@
+/*
+ * File Name: TaskModel.java
+ * Description: This class represents a task model in the app.
+ *
+ * Project Revision:
+ *     Mariana Mozzer, 2023.03.30: Created
+ */
+
 package com.example.taskmaster_v2;
-
-
-
 
 import java.util.Date;
 

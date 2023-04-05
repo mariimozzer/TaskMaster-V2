@@ -1,3 +1,13 @@
+/*
+ * File Name: TaskUpdate.java
+ * Description: This class is responsible for handling the update, delete, and share functionalities of a task in the app.
+ *
+ * Project Revision:
+ *      Mariana Mozzer, 2023.04.02: Created
+ */
+
+
+
 package com.example.taskmaster_v2;
 
 import android.content.Intent;
@@ -26,10 +36,10 @@ public class TaskUpdate extends AppCompatActivity {
         setContentView(R.layout.update_task);
 
 
-
+        // Create a new database helper to interact with the database
         dbHelper = new DatabaseHelper(this);
 
-
+        // Get the task details passed from the previous activity through an intent
         Intent intent = getIntent();
         String taskName = intent.getStringExtra("name");
         String taskDescription= intent.getStringExtra("description");
@@ -38,7 +48,7 @@ public class TaskUpdate extends AppCompatActivity {
         String taskNotes = intent.getStringExtra("notes");
 
 
-
+        // Set the current task details to the UI elements for display
         nameEditText = findViewById(R.id.nameEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         dueDateEditText = findViewById(R.id.dueDateEditText);
@@ -51,37 +61,43 @@ public class TaskUpdate extends AppCompatActivity {
         priorityEditText.setText(String.valueOf(taskPriority));
             notesEditText.setText(taskNotes);
 
-
+        // Add an update button listener to update the task details in the database
         Button updateButton = findViewById(R.id.updateButton);
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Get the updated task details from the UI elements
                 String name = nameEditText.getText().toString();
                 String description = descriptionEditText.getText().toString();
                 String dueDate = dueDateEditText.getText().toString();
                 int priority = Integer.parseInt(priorityEditText.getText().toString());
                 String notes = notesEditText.getText().toString();
 
-
-
+                // Update the task details in the database
                 dbHelper.updateTask(taskName,name, description, dueDate, priority, notes);
+                // Display a success message to the user
                 Toast.makeText(TaskUpdate.this, "Task was successfully updated", Toast.LENGTH_SHORT).show();
+                // Navigate back to the main activity
                 Intent i = new Intent(TaskUpdate.this, MainActivity.class);
                 startActivity(i);
             }
         });
 
+        // Add a delete button listener to delete the task from the database
         Button deleteButton = findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Delete the task from the database
                 dbHelper.deleteTask(taskName);
+                // Display a success message to the user
                 Toast.makeText(TaskUpdate.this, "Task was successfully deleted", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(TaskUpdate.this, MainActivity.class);
                 startActivity(i);
             }
         });
 
+        // Add a share button listener to share the task details with other apps
         Button shareButton = findViewById(R.id.shareButton);
         shareButton.setOnClickListener(new View.OnClickListener() {
             @Override

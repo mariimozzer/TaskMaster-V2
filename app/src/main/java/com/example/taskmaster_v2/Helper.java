@@ -1,3 +1,17 @@
+/*
+ * File Name: Helper.java
+ * Description: This class defines a static method showSameDayTasksPopup() to display a popup dialog when a task is due on the same
+ * day as the current date. The method takes a Context object and a List of TaskModel objects as input,
+ * and loops through the task list to check if any task's due date is the same as the current date. If a match is found,
+ * the method creates an AlertDialog with a message indicating the task due today,
+ * and displays it using the create() and show() methods.
+ * due date, priority.
+ *
+ * Project Revision:
+ *      Guilherme Bueno, 2023.04.01: Created
+ */
+
+
 package com.example.taskmaster_v2;
 
 import android.app.AlertDialog;
