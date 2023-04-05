@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".RegistrationActivity" />
         <activity android:name=".CreateTaskActivity" />
         <activity android:name=".ViewTaskActivity" />
         <activity android:name=".TaskUpdate" />
