@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:backgroundTint="#FCEFF9">
 
     <ImageView
         android:id="@+id/logo"
@@ -42,16 +43,19 @@
         android:layout_below="@id/passwordInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
+        android:backgroundTint="#FC4C02"
         android:text="Enter"
         />
 
-    <TextView
-        android:id="@+id/register_link"
+    <Button
+        android:id="@+id/registrationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/loginButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#FC4C02"
+        android:text="Registration"
         />
 
 </RelativeLayout>

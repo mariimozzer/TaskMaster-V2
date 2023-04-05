@@ -25,6 +25,8 @@ public class TaskUpdate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.update_task);
 
+
+
         dbHelper = new DatabaseHelper(this);
 
 
@@ -79,6 +81,31 @@ public class TaskUpdate extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        Button shareButton = findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = nameEditText.getText().toString();
+                String description = descriptionEditText.getText().toString();
+                String dueDate = dueDateEditText.getText().toString();
+                int priority = Integer.parseInt(priorityEditText.getText().toString());
+                String notes = notesEditText.getText().toString();
+
+                String shareText = "Task name: " + name
+                        + "\nDescription: " + description
+                        + "\nDue date: " + dueDate
+                        + "\nPriority: " + priority
+                        + "\nNotes: " + notes;
+
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Task information");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+                startActivity(Intent.createChooser(shareIntent, "Share via"));
+            }
+        });
+
 
     }
 

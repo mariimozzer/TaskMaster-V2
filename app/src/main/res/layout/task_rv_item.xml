@@ -18,12 +18,15 @@
             android:layout_height="wrap_content"
             android:padding="3dp"
             android:text="Name"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:gravity="center_horizontal"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center_horizontal"
             android:weightSum="2">
 
             <TextView
@@ -33,6 +36,7 @@
                 android:layout_weight="1"
                 android:padding="3dp"
                 android:text="Description"
+                android:gravity="center_horizontal"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -43,6 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="3dp"
+            android:gravity="center_horizontal"
             android:text="Due Date"
             android:textColor="@color/black" />
 
@@ -52,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:padding="3dp"
+            android:gravity="center_horizontal"
             android:text="Priority"
             android:textColor="@color/black" />
 
@@ -61,6 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:padding="3dp"
+            android:gravity="center_horizontal"
             android:text="Notes"
             android:textColor="@color/black" />
     </LinearLayout>
