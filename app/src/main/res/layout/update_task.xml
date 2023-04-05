@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#FCEFF9">
 
     <TextView
         android:text="Update Task"
@@ -67,7 +68,9 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:text="Update" />
+            android:text="Update"
+            android:backgroundTint="#FC4C02"
+            />
 
         <Button
             android:id="@+id/deleteButton"
@@ -76,7 +79,8 @@
             android:text="Delete"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:backgroundTint="#FC4C02"/>
 
         <Button
             android:id="@+id/shareButton"
@@ -86,7 +90,8 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:layout_marginLeft="10dp"
-            android:text="Share" />
+            android:text="Share"
+            android:backgroundTint="#FC4C02"/>
 
     </LinearLayout>
 

@@ -3,6 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FCEFF9"
     android:padding="16dp">
 
     <TextView
@@ -56,6 +57,7 @@
         android:id="@+id/createButton"
         android:text="Create"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="#FC4C02"/>
 
 </LinearLayout>
