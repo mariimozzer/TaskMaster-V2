@@ -54,14 +54,46 @@ public class CreateTaskActivity extends AppCompatActivity {
         String name = nameEditText.getText().toString().trim();
         String description = descriptionEditText.getText().toString().trim();
         String dueDate = dueDateEditText.getText().toString().trim();
-        int priority = Integer.parseInt(priorityEditText.getText().toString().trim());
+        String priorityString = priorityEditText.getText().toString().trim();
         String notes = notesEditText.getText().toString().trim();
 
+        //String used to show the validation errors
+        StringBuilder errors = new StringBuilder();
+
+        if (name.isEmpty()) {
+            errors.append("- Please enter a task name\n");
+        }
+        if (description.isEmpty()) {
+            errors.append("- Please enter a task description\n");
+        }
+        if (dueDate.isEmpty()) {
+            errors.append("- Please enter a due date\n");
+        }
+        if (priorityString.isEmpty()) {
+            errors.append("- Please enter a task priority\n");
+        } else {
+            try {
+                int priority = Integer.parseInt(priorityString);
+                if (priority < 1 || priority > 10) {
+                    errors.append("- Priority must be between 1 and 10\n");
+                }
+            } catch (NumberFormatException e) {
+                errors.append("- Please enter a valid priority\n");
+            }
+        }
+
+        // If there are any errors, display them and return without creating the task
+        if (errors.length() > 0) {
+            Toast.makeText(this, errors.toString(), Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //All fields are valid, create the task
         TaskModel task = new TaskModel();
         task.setName(name);
         task.setDescription(description);
         task.setDueDate(dueDate);
-        task.setPriority(priority);
+        task.setPriority(Integer.parseInt(priorityString));
         task.setNotes(notes);
 
         dbHelper.addTask(task);
