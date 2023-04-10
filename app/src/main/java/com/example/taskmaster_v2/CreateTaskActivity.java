@@ -24,6 +24,8 @@ public class CreateTaskActivity extends AppCompatActivity {
     private Button createButton;
     private DatabaseHelper dbHelper;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +68,15 @@ public class CreateTaskActivity extends AppCompatActivity {
         if (description.isEmpty()) {
             errors.append("- Please enter a task description\n");
         }
+
+        // Validate due date format
+        String datePattern = "\\d{4}-\\d{2}-\\d{2}";
         if (dueDate.isEmpty()) {
             errors.append("- Please enter a due date\n");
+        } else if (!dueDate.matches(datePattern)) {
+            errors.append("- Please enter a valid due date in the format yyyy-mm-dd\n");
         }
+
         if (priorityString.isEmpty()) {
             errors.append("- Please enter a task priority\n");
         } else {
