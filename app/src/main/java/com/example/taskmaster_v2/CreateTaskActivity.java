@@ -1,10 +1,11 @@
 /*
- * File Name: MainActivity.java
+ * File Name: CreateTaskActivity.java
  * Description: This activity allows the user to input task details, including name, description,
  * due date, priority.
  *
  * Project Revision:
  *      Sergio Toledo, 2023.03.30: Created
+ *      Mariana Mozzer, 2023.04.16: Validation added
  */
 
 package com.example.taskmaster_v2;

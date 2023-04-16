@@ -5,6 +5,7 @@
  *
  * Project Revision:
  *      Mariana Mozzer, 2023.03.30: Created
+ *      Mariana Mozzer, 2023.04.16: Updated task altered
  */
 
 
@@ -109,7 +110,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void updateTask(String originalName, String name, String description, String dueDate, int priority, String notes) {
+    public void updateTask(String originalName, String name, String description, String dueDate, String priority, String notes) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, name);

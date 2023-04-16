@@ -4,6 +4,7 @@
  *
  * Project Revision:
  *      Mariana Mozzer, 2023.04.02: Created
+ *      Mariana Mozzer, 2023.04.16: Validation added
  */
 
 
@@ -58,7 +59,7 @@ public class TaskUpdate extends AppCompatActivity {
             nameEditText.setText(taskName);
             descriptionEditText.setText(taskDescription);
             dueDateEditText.setText(taskDueDate);
-        priorityEditText.setText(String.valueOf(taskPriority));
+            priorityEditText.setText(String.valueOf(taskPriority));
             notesEditText.setText(taskNotes);
 
         // Add an update button listener to update the task details in the database
@@ -70,11 +71,51 @@ public class TaskUpdate extends AppCompatActivity {
                 String name = nameEditText.getText().toString();
                 String description = descriptionEditText.getText().toString();
                 String dueDate = dueDateEditText.getText().toString();
-                int priority = Integer.parseInt(priorityEditText.getText().toString());
+                String priorityString = priorityEditText.getText().toString().trim();
                 String notes = notesEditText.getText().toString();
 
+                StringBuilder errors = new StringBuilder();
+
+                //Validate if empty
+                if (name.isEmpty()) {
+                    errors.append("- Please enter a task name\n");
+                }
+                if (description.isEmpty()) {
+                    errors.append("- Please enter a task description\n");
+                }
+
+                // Validate due date format
+                String datePattern = "\\d{4}-\\d{2}-\\d{2}";
+                if (dueDate.isEmpty()) {
+                    errors.append("- Please enter a due date\n");
+                } else if (!dueDate.matches(datePattern)) {
+                    errors.append("- Please enter a valid due date in the format yyyy-mm-dd\n");
+                }
+
+                //Validate if empty and lenght
+                if (priorityString.isEmpty()) {
+                    errors.append("- Please enter a task priority\n");
+                } else {
+                    try {
+                        int priority = Integer.parseInt(priorityString);
+                        if (priority < 1 || priority > 10) {
+                            errors.append("- Priority must be between 1 and 10\n");
+                        }
+                    } catch (NumberFormatException e) {
+                        errors.append("- Please enter a valid priority\n");
+                    }
+                }
+
+                // If there are any errors, display them and return without creating the task
+                if (errors.length() > 0) {
+                    Toast.makeText(TaskUpdate.this, errors.toString(), Toast.LENGTH_LONG).show();
+                    return;
+
+                }
+
+
                 // Update the task details in the database
-                dbHelper.updateTask(taskName,name, description, dueDate, priority, notes);
+                dbHelper.updateTask(taskName,name, description, dueDate, priorityString, notes);
                 // Display a success message to the user
                 Toast.makeText(TaskUpdate.this, "Task was successfully updated", Toast.LENGTH_SHORT).show();
                 // Navigate back to the main activity
